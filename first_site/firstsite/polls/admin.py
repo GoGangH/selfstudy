@@ -1,6 +1,5 @@
 from django.contrib import admin
+from .models import Blog
 
-from .models import Question
-
-admin.site.register(Question)
+admin.site.register(Blog) #어드민 설정에서 블로그 페이지 생성
 # Register your models here.

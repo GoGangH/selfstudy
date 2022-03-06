@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'polls'
+    'polls' #어플 생성후 연결
 ]
 
 MIDDLEWARE = [
@@ -85,8 +85,7 @@ DATABASES = {
 '''
 DATABASES = my_settings.DATABASES
 SECRET_KEY =  my_settings.SECRET
-
-#my_settings.py에 담어뒀음
+#my_settings.py에 담아둔후 연결후 데이터 불러오기
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
