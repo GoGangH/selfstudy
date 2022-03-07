@@ -16,5 +16,8 @@ class Blog(models.Model): #블로그 테이블 생성
 
     def __str__(self):
         return self.title 
+
+    def summary(slef):
+        return self.body[:200]
     #외부에서 보이는 타이틀 명 변경
 # Create your models here.

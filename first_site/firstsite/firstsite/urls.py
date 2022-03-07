@@ -20,4 +20,5 @@ import polls.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', polls.views.home, name='home'),
+    path('blog/<int:blog_id>', polls.views.detail, name='detail'),
 ]

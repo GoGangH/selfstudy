@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>혀니네 블로그</title>
+    <title>Document</title>
 </head>
 <body>
-    {% for blog in blogs.all %} <!--blog db에서 정보 가져오기-->
-    <a href="{% url 'detail' blog.id %}">{{blog.title}}</a>
-    <!--블로그 정보 가져온후 페이지에 삽입-->
+    <h2>{{blog.title}}</h2>
+    <p>{{blog.pub_date}}</p>
+    <p>{{blog.body}}</p>
     <br>
     <br>
-    {%endfor%}
 </body>
 </html>
