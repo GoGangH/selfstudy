@@ -20,5 +20,6 @@ import polls.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', polls.views.home, name='home'),
-    path('blog/<int:blog_id>', polls.views.detail, name='detail'),
+    path('blog/<int:blog_id>', polls.views.detail, name='detail'), #<int:blog_id>는 path converter이라고 함 int는 정수형이라는 것 blog_id는 views.py에 있는 detail함수에 넘겨줄 인자
 ]
+#path converter <type : 변수이름 >
