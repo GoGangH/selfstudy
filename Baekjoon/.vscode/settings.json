@@ -1,6 +1,11 @@
 {
     "files.associations": {
         "vector": "cpp",
-        "__bit_reference": "cpp"
+        "__bit_reference": "cpp",
+        "deque": "cpp",
+        "functional": "cpp",
+        "set": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp"
     }
 }
