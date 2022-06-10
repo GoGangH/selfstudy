@@ -7,6 +7,10 @@
         "set": "cpp",
         "string": "cpp",
         "unordered_map": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "__split_buffer": "cpp",
+        "array": "cpp",
+        "queue": "cpp",
+        "string_view": "cpp"
     }
 }
