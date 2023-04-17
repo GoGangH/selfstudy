@@ -7,6 +7,7 @@
         "utility": "cpp",
         "iterator": "cpp",
         "xiosbase": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "ios": "cpp"
     }
 }
