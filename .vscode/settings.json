@@ -1,13 +1,14 @@
 {
-    "files.associations": {
-        "*.cpp": "cpp",
-        "ostream": "cpp",
-        "iostream": "cpp",
-        "vector": "cpp",
-        "utility": "cpp",
-        "iterator": "cpp",
-        "xiosbase": "cpp",
-        "string": "cpp",
-        "ios": "cpp"
-    }
+  "files.associations": {
+    "*.cpp": "cpp",
+    "ostream": "cpp",
+    "iostream": "cpp",
+    "vector": "cpp",
+    "utility": "cpp",
+    "iterator": "cpp",
+    "xiosbase": "cpp",
+    "string": "cpp",
+    "ios": "cpp",
+    "iosfwd": "cpp"
+  }
 }
