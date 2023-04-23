@@ -21,7 +21,7 @@ void findWorm(int n, int m)
         {
             int x1 = xa + dx[i];
             int y1 = ya + dy[i];
-            if (x1 < 0 || y1 < 0 || x1 >= n || y1 >= n)
+            if (x1 < 0 || y1 < 0 || x1 >= n || y1 >= m)
                 continue;
             if (arr[x1][y1] == 1)
             {
