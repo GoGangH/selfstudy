@@ -10,6 +10,8 @@
     "string": "cpp",
     "ios": "cpp",
     "iosfwd": "cpp",
-    "deque": "cpp"
+    "deque": "cpp",
+    "ratio": "cpp",
+    "map": "cpp"
   }
 }
