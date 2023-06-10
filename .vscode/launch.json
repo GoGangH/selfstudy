@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
       {
+        "name": "(lldb) 연결",
+        "type": "cppdbg",
+        "request": "attach",
+        "program": "프로그램 이름 입력(예: ${workspaceFolder}/a.out)",
+        "MIMode": "lldb"
+      },
+      {
         "name": "clang++ - Build and debug active file",
         "type": "cppdbg",
         "request": "launch",
