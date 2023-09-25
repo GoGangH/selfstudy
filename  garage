@@ -2,45 +2,68 @@
 
 scale 2
 class GarageManager{
-    +
+    +open()
+    +close()
+    +stop()
 }
 
 class Garage {
-    +openForSpeaking: boolean
-    -callForAction()
-    +applyAsSpokePerson()
-    +setNotificationLight()
+    +name: string
+    +state: GarageState
+    +adress: string
 }
 
 class Door {
-    +type: string
     -width: int
     -height: int
     -weight: int
     -material: string
-    +downloadMaterials()
+    -color: string
+    +setColor(string)
 }
 
 class Motor {
-    +speed: int
+    -speed: int
     -power: int
     -MAX_WEIGHT: int
-    +suggestEventBasedOnPreference()
-    +registerForTicket()
+    -moter_state: int
+    +setSpeed()
+    +runMotor(pos)
+    +stopMotor()
 }
 
 class NotificationLight{
-    -Status: Bulb_Color
-    setStatus(Bulb_Color)
+    -state: NotificationLightState
+    -Light_Color: BulbColor
+    +setState(NotificationLightState)
+    +setLight(BulbColor)
 }
 
-Enum Bulb_Color{
+Enum GarageState{
+    Empty
+    Full
+}
+
+Enum BulbColor{
     GREEN
     YELLOW
     BLUE
 }
 
+Enum NotificationLightState{
+    Open
+    Doing
+    Close
+}
+
+GarageManager -- Garage
 Garage <|-- Door
 Garage <|-- Motor
+Garage <|-- NotificationLight
+Garage --> GarageState
+
+NotificationLight --> BulbColor
+NotificationLight --> NotificationLightState
+
 
 @enduml
