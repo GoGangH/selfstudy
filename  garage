@@ -1,0 +1,46 @@
+@startuml
+
+scale 2
+class GarageManager{
+    +
+}
+
+class Garage {
+    +openForSpeaking: boolean
+    -callForAction()
+    +applyAsSpokePerson()
+    +setNotificationLight()
+}
+
+class Door {
+    +type: string
+    -width: int
+    -height: int
+    -weight: int
+    -material: string
+    +downloadMaterials()
+}
+
+class Motor {
+    +speed: int
+    -power: int
+    -MAX_WEIGHT: int
+    +suggestEventBasedOnPreference()
+    +registerForTicket()
+}
+
+class NotificationLight{
+    -Status: Bulb_Color
+    setStatus(Bulb_Color)
+}
+
+Enum Bulb_Color{
+    GREEN
+    YELLOW
+    BLUE
+}
+
+Garage <|-- Door
+Garage <|-- Motor
+
+@enduml
