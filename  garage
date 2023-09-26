@@ -8,9 +8,12 @@ class GarageManager{
 }
 
 class Garage {
-    +name: string
-    +state: GarageState
-    +adress: string
+    -name: string
+    -state: GarageState
+    -adress: string
+    +setName(string)
+    +setState(GarageState)
+    +getState(GarageState)
 }
 
 class Door {
@@ -24,12 +27,12 @@ class Door {
 
 class Motor {
     -speed: int
-    -power: int
     -MAX_WEIGHT: int
-    -moter_state: int
-    +setSpeed()
-    +runMotor(pos)
-    +stopMotor()
+    -motor_pos: int
+    -motor_state: MotorState
+    +setSpeed(int)
+    +setMotorState(MotorState)
+    +runMotor()
 }
 
 class NotificationLight{
@@ -45,6 +48,7 @@ Enum GarageState{
 }
 
 Enum BulbColor{
+    None
     GREEN
     YELLOW
     BLUE
@@ -56,11 +60,18 @@ Enum NotificationLightState{
     Close
 }
 
+Enum MotorState{
+    UP
+    DOWN
+    STOP
+}
+
 GarageManager -- Garage
 Garage <|-- Door
 Garage <|-- Motor
 Garage <|-- NotificationLight
 Garage --> GarageState
+Motor --> MotorState
 
 NotificationLight --> BulbColor
 NotificationLight --> NotificationLightState
