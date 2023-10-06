@@ -1,0 +1,80 @@
+@startuml
+
+scale 2
+class GarageManager{
+    +open()
+    +close()
+    +stop()
+}
+
+class Garage {
+    -name: string
+    -state: GarageState
+    -adress: string
+    +setName(string)
+    +setState(GarageState)
+    +getState(GarageState)
+}
+
+class Door {
+    -width: int
+    -height: int
+    -weight: int
+    -material: string
+    -color: string
+    +setColor(string)
+}
+
+class Motor {
+    -speed: int
+    -MAX_WEIGHT: int
+    -motor_pos: int
+    -motor_state: MotorState
+    +setSpeed(int)
+    +setMotorState(MotorState)
+    +runMotor()
+}
+
+class NotificationLight{
+    -state: NotificationLightState
+    -Light_Color: BulbColor
+    +setState(NotificationLightState)
+    +setLight(BulbColor)
+}
+
+Enum GarageState{
+    Empty
+    Full
+}
+
+Enum BulbColor{
+    None
+    GREEN
+    YELLOW
+    BLUE
+}
+
+Enum NotificationLightState{
+    Open
+    Doing
+    Close
+}
+
+Enum MotorState{
+    UP
+    DOWN
+    STOP
+}
+
+GarageManager -- Garage
+Garage <|-- Door
+Garage <|-- Motor
+Garage <|-- NotificationLight
+Garage --> GarageState
+Motor --> MotorState
+
+NotificationLight --> BulbColor
+NotificationLight --> NotificationLightState
+
+
+@enduml

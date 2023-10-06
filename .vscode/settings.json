@@ -55,9 +55,15 @@
     "xstring": "cpp",
     "xtr1common": "cpp",
     "xtree": "cpp",
+<<<<<<< HEAD
     "xutility": "cpp"
   },
   "cSpell.words": [
     "fibo"
   ]
+=======
+    "xutility": "cpp",
+    "__locale": "cpp"
+  }
+>>>>>>> 48a021e093e39a51a6314fc9044931257092eeac
 }
