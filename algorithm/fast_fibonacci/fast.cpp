@@ -18,7 +18,10 @@ void fast_fibo(int n, int t[]){
 
     fast_fibo(n/2, t);
 
-    int x = (t[0]*(2*t[1] - t[0])) % 1000;
+    int p = 2 * t[1] - t[0];
+    if(2*t[1] < t[0]) p = (2*t[1] - t[0]) + 1000;
+
+    int x = (t[0] * p) % 1000;
     int y = (t[0]*t[0] + t[1]*t[1]) % 1000;
 
     if (n%2==0){
