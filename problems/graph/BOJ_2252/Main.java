@@ -2,61 +2,55 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
+    static int N;
+    static HashMap<Integer, ArrayList<Integer>> edge = new HashMap<>();
+    static Queue<Integer> q = new LinkedList<>();
+    static int[] edges;
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader("input.txt"));
-
+        BufferedReader br;
+        try {
+            br = new BufferedReader(new FileReader("input.txt"));
+        } catch (Exception e) {
+            br = new BufferedReader(new InputStreamReader(System.in));
+        }
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int N = Integer.parseInt(st.nextToken());
+
+        N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
 
-        // 진입 차수 배열
-        int[] indegree = new int[N + 1];
+        edges = new int[N+1];
 
-        // 그래프 (인접 리스트)
-        ArrayList<Integer>[] graph = new ArrayList[N + 1];
-        for (int i = 1; i <= N; i++) {
-            graph[i] = new ArrayList<>();
-        }
-
-        // 간선 정보 입력
-        for (int i = 0; i < M; i++) {
+        for(int i=0;i<M;i++){
             st = new StringTokenizer(br.readLine());
-            int A = Integer.parseInt(st.nextToken());
-            int B = Integer.parseInt(st.nextToken());
-            graph[A].add(B);
-            indegree[B]++;
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+
+            ArrayList<Integer> load = edge.getOrDefault(a, new ArrayList<Integer>());
+            load.add(b);
+            edge.put(a, load);
+            edges[b]++;
         }
 
-        br.close();
+        solve();
+    }
 
-        // 위상 정렬 (큐 사용)
-        Queue<Integer> queue = new LinkedList<>();
-
-        // 진입 차수가 0인 노드를 큐에 추가
-        for (int i = 1; i <= N; i++) {
-            if (indegree[i] == 0) {
-                queue.offer(i);
+    public static void solve(){
+        for(int i=1;i<=N;i++){
+            if(edges[i] == 0){
+                q.add(i);
             }
         }
-
-        StringBuilder result = new StringBuilder();
-
-        // 위상 정렬 수행
-        while (!queue.isEmpty()) {
-            int current = queue.poll();
-            result.append(current).append(" ");
-
-            // 현재 노드와 연결된 노드들의 진입 차수 감소
-            for (int next : graph[current]) {
-                indegree[next]--;
-
-                // 진입 차수가 0이 되면 큐에 추가
-                if (indegree[next] == 0) {
-                    queue.offer(next);
+        while(!q.isEmpty()){
+            int now = q.poll();
+            System.out.print(now + " ");
+            edges[now] = -1;
+            ArrayList<Integer> load = edge.getOrDefault(now, new ArrayList<Integer>());
+            for(Integer way : load){
+                edges[way]--;
+                if(edges[way] == 0){
+                    q.add(way);
                 }
             }
         }
-
-        System.out.println(result.toString().trim());
     }
 }
