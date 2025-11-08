@@ -76,22 +76,25 @@ for TEST_FILE in "${TEST_FILES[@]}"; do
         cat "$OUTPUT_FILE"
         echo ""
 
-        # 실제 출력을 임시 파일에 저장
-        echo "$ACTUAL_OUTPUT" > /tmp/actual_output.txt
+        # 실제 출력을 임시 파일에 저장 (앞뒤 공백 제거)
+        echo "$ACTUAL_OUTPUT" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' > /tmp/actual_output.txt
+
+        # 예상 출력도 앞뒤 공백 제거
+        sed 's/^[[:space:]]*//;s/[[:space:]]*$//' "$OUTPUT_FILE" > /tmp/expected_output.txt
 
         # 비교
-        if diff -q /tmp/actual_output.txt "$OUTPUT_FILE" > /dev/null 2>&1; then
+        if diff -q /tmp/actual_output.txt /tmp/expected_output.txt > /dev/null 2>&1; then
             echo -e "${GREEN}✅ 통과!${NC}"
             ((PASSED++))
         else
             echo -e "${RED}❌ 실패!${NC}"
             echo -e "${YELLOW}[차이점]${NC}"
-            diff /tmp/actual_output.txt "$OUTPUT_FILE" || true
+            diff /tmp/actual_output.txt /tmp/expected_output.txt || true
             ((FAILED++))
         fi
 
         # 임시 파일 삭제
-        rm -f /tmp/actual_output.txt
+        rm -f /tmp/actual_output.txt /tmp/expected_output.txt
     else
         echo -e "${YELLOW}⚠️  예상 출력 파일이 없습니다 (${OUTPUT_FILE})${NC}"
     fi

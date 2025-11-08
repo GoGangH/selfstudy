@@ -290,22 +290,25 @@ for TEST_FILE in "${TEST_FILES[@]}"; do
         cat "$OUTPUT_FILE"
         echo ""
 
-        # 실제 출력을 임시 파일에 저장
-        echo "$ACTUAL_OUTPUT" > /tmp/actual_output.txt
+        # 실제 출력을 임시 파일에 저장 (앞뒤 공백 제거)
+        echo "$ACTUAL_OUTPUT" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' > /tmp/actual_output.txt
+
+        # 예상 출력도 앞뒤 공백 제거
+        sed 's/^[[:space:]]*//;s/[[:space:]]*$//' "$OUTPUT_FILE" > /tmp/expected_output.txt
 
         # 비교
-        if diff -q /tmp/actual_output.txt "$OUTPUT_FILE" > /dev/null 2>&1; then
+        if diff -q /tmp/actual_output.txt /tmp/expected_output.txt > /dev/null 2>&1; then
             echo -e "${GREEN}✅ 통과!${NC}"
             ((PASSED++))
         else
             echo -e "${RED}❌ 실패!${NC}"
             echo -e "${YELLOW}[차이점]${NC}"
-            diff /tmp/actual_output.txt "$OUTPUT_FILE" || true
+            diff /tmp/actual_output.txt /tmp/expected_output.txt || true
             ((FAILED++))
         fi
 
         # 임시 파일 삭제
-        rm -f /tmp/actual_output.txt
+        rm -f /tmp/actual_output.txt /tmp/expected_output.txt
     else
         echo -e "${YELLOW}⚠️  예상 출력 파일이 없습니다 (${OUTPUT_FILE})${NC}"
     fi
@@ -352,6 +355,7 @@ https://www.acmicpc.net/problem/${BOJ_NUMBER}
 - 카테고리: ${CATEGORY_NAME}
 - 세부 알고리즘: ${SUB_ALGORITHM}
 - 난이도: ${DIFFICULTY}
+- 상태: ⏳ 푸는 중
 
 ## 알고리즘
 \`\`\`
@@ -383,12 +387,12 @@ if [ -f "$CATEGORY_README" ]; then
     TEMP_FILE=$(mktemp)
 
     # 새로운 테이블 행 생성
-    NEW_ROW="| ${BOJ_NUMBER} | ${PROBLEM_TITLE} | ${SUB_ALGORITHM} | ${DIFFICULTY} | [바로가기](./BOJ_${BOJ_NUMBER}) |"
+    NEW_ROW="| ${BOJ_NUMBER} | ${PROBLEM_TITLE} | ${SUB_ALGORITHM} | ${DIFFICULTY} | ⏳ | [바로가기](./BOJ_${BOJ_NUMBER}) |"
 
-    # 빈 행(| - | - | - | - | - |) 바로 위에 새 행 추가
+    # 빈 행(| - | - | - | - | - | - |) 바로 위에 새 행 추가
     awk -v new_row="$NEW_ROW" '
     {
-        if ($0 ~ /^\| - \| - \| - \| - \| - \|$/) {
+        if ($0 ~ /^\| - \| - \| - \| - \| - \| - \|$/) {
             print new_row
         }
         print $0
@@ -414,6 +418,11 @@ echo -e "  • 테스트 스크립트: ${CYAN}${TEST_SCRIPT}${NC}"
 echo -e "  • README: ${CYAN}${README_FILE}${NC}"
 echo -e "  • 카테고리 목록에 자동 추가됨"
 echo ""
+# 통계 업데이트
+echo -e "${BLUE}📊 통계 업데이트 중...${NC}"
+python3 update-stats.py 2>/dev/null || echo -e "${YELLOW}⚠️  통계 업데이트를 건너뛰었습니다.${NC}"
+echo ""
+
 echo -e "${YELLOW}📌 다음 단계:${NC}"
 echo -e "  ${CYAN}1.${NC} cd ${PROBLEM_DIR}"
 echo -e "  ${CYAN}2.${NC} input/input1.txt, input2.txt에 테스트 입력 작성"
