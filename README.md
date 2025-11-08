@@ -40,11 +40,14 @@
 3. **문제 제목** - 문제 이름 입력
 4. **세부 알고리즘** - 선택 사항 (예: 위상정렬, 다익스트라, 메모이제이션)
 5. **난이도** - (예: Bronze 5, Silver 3, Gold 1, Platinum 5)
-6. **최종 확인** - y/n으로 생성 확인
+6. **템플릿 선택** - 간단한 템플릿(Scanner) 또는 빠른 템플릿(BufferedReader)
+7. **최종 확인** - y/n으로 생성 확인
 
 **자동으로 생성되는 것:**
 - 문제 디렉토리: `problems/카테고리/BOJ_번호/`
-- Java 템플릿: `Main.java` (BufferedReader/Writer 포함)
+- Java 템플릿: `Main.java` (선택한 템플릿으로 생성)
+  - **템플릿 1**: Scanner + System.out.println (프로그래머스, 일반 코딩테스트용)
+  - **템플릿 2**: BufferedReader/Writer (백준, 대용량 입출력용)
 - 문제 README: 문제 정보 템플릿
 - 카테고리 README에 자동으로 문제 정보 추가
 

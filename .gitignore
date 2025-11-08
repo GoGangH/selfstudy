@@ -38,3 +38,10 @@
 *.cph
 
 # End of https://www.toptal.com/developers/gitignore/api/c++
+
+### Java ###
+# Compiled class files
+*.class
+
+# Temporary input file used during testing
+input.txt
